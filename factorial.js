@@ -26,3 +26,19 @@ if (choice === "1"){
 }
 
 })
+
+    r1.question("Please enter a number for factorial: ", numStr =>{
+        let num = parseInt(numStr);
+
+        if (isNaN(num) || num < 0){
+            console.log("Please enter a non-negative integer");
+        } else {
+            let fact = 1;
+
+            for (let i=1; i <= num; i++){
+                fact *=1;
+        }
+        
+        console.log("The Factorial of " + num + " is " + fact);
+    }
+    })
