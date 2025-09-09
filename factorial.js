@@ -5,6 +5,7 @@ const r1 = readline.createInterface({
     output: process.stdout
 })
 
+function mainMenu(){
 console.log("Factorial Application");
 console.log("------------------------------");
 console.log("1. Say Hello");
@@ -15,17 +16,18 @@ console.log("------------------------------");
 r1.question("enter your choice (1-3): ", choice =>{
     console.log(choice);
 
-if (choice === "1"){
+    if (choice === "1"){
     console.log("Hello");
-} else if (choice === "2"){
+    } else if (choice === "2"){
     console.log("Factorial");
-} else if (choice === "3"){
+    }  else if (choice === "3"){
     console.log("Exiting Application");
-} else {
+    } else {
     console.log("Invalid Choice. Please Try Again");
-}
+    }
 
-})
+    })
+}
 
     r1.question("Please enter a number for factorial: ", numStr =>{
         let num = parseInt(numStr);
@@ -38,7 +40,8 @@ if (choice === "1"){
             for (let i=1; i <= num; i++){
                 fact *=1;
         }
+         
         
-        console.log("The Factorial of " + num + " is " + fact);
+
     }
     })
