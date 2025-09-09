@@ -1,6 +1,6 @@
 const readline=require("readline");
 
-const r1 = readline.createInterface({
+const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 })
@@ -13,18 +13,17 @@ const r1 = readline.createInterface({
     console.log("3. Exit Application");
     console.log("------------------------------");
 
-    r1.question("enter your choice (1-3): ", choice =>{
+    rl.question("enter your choice (1-3): ", choice =>{
     
-
     if (choice === "1"){
-        sayHello();
+       sayHello();
     } else if (choice === "2"){
         computeFactorial();
-        } else if (choice === "3"){
+    } else if (choice === "3"){
            exitProgram();
-        } else {
-            console.log("Invalid Choice. Please Try Again");
-        }
+    } else {
+        console.log("Invalid Choice. Please Try Again");
+    }
 
     })
 }
@@ -34,7 +33,7 @@ const r1 = readline.createInterface({
     }
 
     function computeFactorial(){
-    console.log("Factorial");
+        console.log("Factorial");
 
         rl.question("Please enter a number for factorial: ", numStr =>{
             let num = parseInt(numStr);
@@ -50,6 +49,7 @@ const r1 = readline.createInterface({
 
                 console.log("The factorial of " + num + " is " + fact);
             }
+            backToMenu();
         })
 }
 
@@ -60,4 +60,23 @@ const r1 = readline.createInterface({
 
         }
         
+        function backToMenu(){
+        console.log("--------------");
+        console.log("1. Back to menu");
+        console.log("2. Exit");
+
+    rl.question("What would you like to do next? (1-2) ", (backToMenuChoice)=>{
+
+        if(backToMenuChoice==="1"){
+            console.clear();
+            mainMenu();
+        } else if (backToMenuChoice ==="2"){
+            exitProgram();
+        } else {
+            console.log("Invalid Choice. Please Try Again!");
+            backToMenu();
+        }
+
+    })
+}
         mainMenu();
