@@ -51,12 +51,11 @@
             try {
                 const response = await fetch(this.dataUrl);
 
-                if (!response.ok){ throw new Error(`Failed to load data": $response.statusText)`);
-                }
+                if (!response.ok) throw new Error(`Failed to load data:{ $response.statusText}`);
                 const data = await response.json();
                 return data;
 
-            }catch{
+            }catch(error){
                 console.log("Error fetching data:", error);
                 return null;
             }
