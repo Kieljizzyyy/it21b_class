@@ -8,11 +8,12 @@
 <body>
     <h1>Radar Chart<h1></h1>
     <div>
-         <canvas> id= "radarChart" </canvas>
+         <canvas id= "radarChart"></canvas>
     </div>
    </body>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
    <script>
+
 class radarChart{
         constructor(canvasId,dataUrl){
             this.canvasId = canvasId;
@@ -57,7 +58,7 @@ class radarChart{
         async fetchData(){
             try{
                 const response = await fetch(this.dataUrl);
-                if(response.ok) throw new Error(`Failed to Load data: ${response.statusText}`);
+                if(!response.ok) throw new Error(`Failed to Load data: ${response.statusText}`);
 
                 const data = await response.json();
                 return data;
@@ -66,13 +67,12 @@ class radarChart{
                 return null;
             }
         }
-        aysnc init(){
+
+        async init(){
             const data = await this.fetchData();
             if(data) this.renderChart(data);
         }
     }
-
-    
 
     document.addEventListener("DOMContentLoaded", ()=>{
         const chart = new radarChart("radarChart", "radarData.json");
