@@ -7,30 +7,29 @@
 </head>
 <body>
     <h1>Radar Chart<h1></h1>
-    <div>  
-
+    <div>
+         <canvas> id= "radarChart" </canvas>
     </div>
-</body>
-</html>
-
-    Class radarChart(){
+   </body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <script>
+class radarChart{
         constructor(canvasId,dataUrl){
             this.canvasId = canvasId;
             this.dataUrl = dataUrl;
             this.render = null;
-        }
-
+}
         renderChart(data){
             const ctx = document.getElementById(this.canvasId).getContext("2d");
 
             this.chart = new Chart(ctx,{
                 type:"radar" ,
-                data: (
+                data: {
                     //labels
                     labels:data.labels,
                     //datasets
                     datasets: data.datasets
-                ),
+                },
                 options: {
                     responsive: true,
                     plugins: {
@@ -45,7 +44,7 @@
                     },
                     scales:{
                         r: {
-                            angleLines:(display:true),
+                            angleLines:{display:true},
                             suggestedMin:0,
                             suggestedMax:100
                         }
@@ -53,4 +52,34 @@
                 }
             });
         }
+
+        
+        async fetchData(){
+            try{
+                const response = await fetch(this.dataUrl);
+                if(response.ok) throw new Error(`Failed to Load data: ${response.statusText}`);
+
+                const data = await response.json();
+                return data;
+            } catch(error){
+                console.error("error fetching data: ", error);
+                return null;
+            }
+        }
+        aysnc init(){
+            const data = await this.fetchData();
+            if(data) this.renderChart(data);
+        }
     }
+
+    
+
+    document.addEventListener("DOMContentLoaded", ()=>{
+        const chart = new radarChart("radarChart", "radarData.json");
+        chart.init();
+    });
+
+</script>
+</html>
+
+    
