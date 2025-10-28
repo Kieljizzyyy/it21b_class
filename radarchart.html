@@ -6,7 +6,7 @@
     <title>Radar Chart</title>
 </head>
 <body>
-    <h1>Radar Chart<h1></h1>
+    <h1>Radar Chart</h1>
     <div>
          <canvas id= "radarChart"></canvas>
     </div>
@@ -18,7 +18,7 @@ class radarChart{
         constructor(canvasId,dataUrl){
             this.canvasId = canvasId;
             this.dataUrl = dataUrl;
-            this.render = null;
+            this.chart = null;
 }
         renderChart(data){
             const ctx = document.getElementById(this.canvasId).getContext("2d");
